@@ -1,14 +1,14 @@
-# Task: Convert Project Rules to Claude Code Hooks
+# Task: Convert Project Rules to Iflow Code Hooks
 
-You are an expert at converting natural language project rules into Claude Code hook configurations. Your task is to analyze the given rules and generate appropriate hook configurations following the official Claude Code hooks specification.
+You are an expert at converting natural language project rules into Iflow Code hook configurations. Your task is to analyze the given rules and generate appropriate hook configurations following the official Iflow Code hooks specification.
 
 ## Instructions
 
 1. If rules are provided as arguments, analyze those rules
-2. If no arguments are provided, read and analyze the CLAUDE.md file from these locations:
-   - `./CLAUDE.md` (project memory)
-   - `./CLAUDE.local.md` (local project memory)  
-   - `~/.claude/CLAUDE.md` (user memory)
+2. If no arguments are provided, read and analyze the Iflow.md file from these locations:
+   - `./Iflow.md` (project memory)
+   - `./Iflow.local.md` (local project memory)  
+   - `~/.Iflow/Iflow.md` (user memory)
 
 3. For each rule, determine:
    - The appropriate hook event (PreToolUse, PostToolUse, Stop, Notification)
@@ -16,7 +16,7 @@ You are an expert at converting natural language project rules into Claude Code 
    - The command to execute
 
 4. Generate the complete hook configuration following the exact JSON structure
-5. Save it to `~/.claude/hooks.json` (merge with existing hooks if present)
+5. Save it to `~/.Iflow/hooks.json` (merge with existing hooks if present)
 6. Provide a summary of what was configured
 
 ## Hook Events
@@ -46,13 +46,13 @@ You are an expert at converting natural language project rules into Claude Code 
 - **Common Uses**: Formatting, linting, building, testing after file changes
 
 ### Stop
-- **When**: Runs when Claude Code finishes responding
+- **When**: Runs when Iflow Code finishes responding
 - **Common Keywords**: "finish", "complete", "end task", "done", "wrap up"
 - **No matcher needed**: Applies to all completions
 - **Common Uses**: Final status checks, summaries, cleanup
 
 ### Notification
-- **When**: Runs when Claude Code sends notifications
+- **When**: Runs when Iflow Code sends notifications
 - **Common Keywords**: "notify", "alert", "inform", "message"
 - **Special**: Rarely used for rule conversion
 
@@ -179,7 +179,7 @@ You are an expert at converting natural language project rules into Claude Code 
       "matcher": "Bash",
       "hooks": [{
         "type": "command",
-        "command": "echo \"[$(date)] Executing bash command\" >> ~/.claude/command.log"
+        "command": "echo \"[$(date)] Executing bash command\" >> ~/.Iflow/command.log"
       }]
     }]
   }
@@ -188,11 +188,11 @@ You are an expert at converting natural language project rules into Claude Code 
 
 ## Best Practices for Command Generation
 
-1. **Error Handling**: Add `|| true` or `2>/dev/null` to prevent hook failures from blocking Claude
+1. **Error Handling**: Add `|| true` or `2>/dev/null` to prevent hook failures from blocking Iflow
 2. **Quiet Mode**: Use quiet flags (--quiet, -q) when available
 3. **Path Safety**: Use relative paths or check existence
-4. **Performance**: Keep commands fast to avoid slowing down Claude
-5. **Logging**: Redirect verbose output to avoid cluttering Claude's interface
+4. **Performance**: Keep commands fast to avoid slowing down Iflow
+5. **Logging**: Redirect verbose output to avoid cluttering Iflow's interface
 
 ## Common Rule Patterns
 
